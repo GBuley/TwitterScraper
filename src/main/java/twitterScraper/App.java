@@ -17,10 +17,16 @@ public class App {
 	private static ResourceBundle props = ResourceBundle.getBundle("twitterScraper");
 	private static Login twitterLogin = new Login();
 	private static Twitter twitter = TwitterFactory.getSingleton();
+	static int i = 0;
 	
     public static void main(String[] args) throws TwitterException, IOException {
         AccessToken at = twitterLogin.createAccessToken(props.getString("Dtwitter4j.oauth.consumerKey"), props.getString("Dtwitter4j.oauth.consumerSecret"));
         ResponseList<Status> mentions = twitter.getMentionsTimeline();
+        while(mentions != null) {
+        	System.out.println(mentions.get(i).getText());
+        	twitter.updateStatus(mentions.get(i).getText());
+        	i++;
+        }
         
     }
 }
