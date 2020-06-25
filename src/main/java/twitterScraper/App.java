@@ -6,6 +6,7 @@ package twitterScraper;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -17,15 +18,27 @@ public class App {
 	private static ResourceBundle props = ResourceBundle.getBundle("twitterScraper");
 	private static Login twitterLogin = new Login();
 	private static Twitter twitter = TwitterFactory.getSingleton();
-	static int i = 0;
 	
     public static void main(String[] args) throws TwitterException, IOException {
         AccessToken at = twitterLogin.createAccessToken(props.getString("Dtwitter4j.oauth.consumerKey"), props.getString("Dtwitter4j.oauth.consumerSecret"));
         ResponseList<Status> mentions = twitter.getMentionsTimeline();
-        while(mentions != null) {
-        	System.out.println(mentions.get(i).getText());
-        	twitter.updateStatus(mentions.get(i).getText());
-        	i++;
+        ResponseList<Status> homeTimeline = twitter.getHomeTimeline();
+        
+        for(int i=0; i<mentions.size(); i++) {
+        	System.out.println("I've been mentioned!");
+        	Status theAsk = mentions.get(i);
+        	
+        	CharSequence theAskText = theAsk.getText();
+        	
+        	for(int s=0; i<homeTimeline.size(); s++) {
+        		Status theAnswers = homeTimeline.get(s);
+        		String answer = theAnswers.getText();
+        		
+        		if(answer.contains(theAskText)) {
+        			System.out.println("I've already made a response to that status, moving on...");
+        		}
+        	}
+        	
         }
         
     }
