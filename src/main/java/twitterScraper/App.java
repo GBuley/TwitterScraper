@@ -20,26 +20,10 @@ public class App {
 	private static Twitter twitter = TwitterFactory.getSingleton();
 	
     public static void main(String[] args) throws TwitterException, IOException {
+    	new GUI();
         AccessToken at = twitterLogin.createAccessToken(props.getString("Dtwitter4j.oauth.consumerKey"), props.getString("Dtwitter4j.oauth.consumerSecret"));
         ResponseList<Status> mentions = twitter.getMentionsTimeline();
         ResponseList<Status> homeTimeline = twitter.getHomeTimeline();
-        
-        for(int i=0; i<mentions.size(); i++) {
-        	System.out.println("I've been mentioned!");
-        	Status theAsk = mentions.get(i);
-        	
-        	CharSequence theAskText = theAsk.getText();
-        	
-        	for(int s=0; i<homeTimeline.size(); s++) {
-        		Status theAnswers = homeTimeline.get(s);
-        		String answer = theAnswers.getText();
-        		
-        		if(answer.contains(theAskText)) {
-        			System.out.println("I've already made a response to that status, moving on...");
-        		}
-        	}
-        	
-        }
         
     }
 }
