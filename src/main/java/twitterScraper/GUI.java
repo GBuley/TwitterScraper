@@ -21,7 +21,7 @@ public class GUI {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JPanel panel2 = new JPanel();
-	JButton btn = new JButton("Check Text for Phishing");
+	JButton btn = new JButton("Query for Twishing");
 	JTextField text = new JTextField();
 	String queryText;
 	PhishingRules rules = new PhishingRules();
@@ -34,7 +34,7 @@ public class GUI {
 		
 		frame.add(panel, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Twitter Phishing Scraper");
+		frame.setTitle("Twitter Twishing Scraper");
 		frame.pack();
 		frame.setVisible(true);
 
@@ -50,7 +50,7 @@ public class GUI {
 			    		@SuppressWarnings("static-access")
 						boolean uhoh = rules.checkForPhishing(status.getText());
 			    		if(uhoh == true) {
-			    			JLabel label = new JLabel("BAD!" +"@" + status.getUser().getScreenName() + ":" + status.getText());
+			    			JLabel label = new JLabel("BAD! " +"@" + status.getUser().getScreenName() + ":" + status.getText());
 			    			label.setForeground(Color.RED);
 			    			System.out.println("BAD!"+"@" + status.getUser().getScreenName() + ":" + status.getText());
 			    			panel.add(label);
@@ -58,7 +58,7 @@ public class GUI {
 			    		}
 			    		else {
 			    			JLabel label = new JLabel("@" + status.getUser().getScreenName() + ":" + status.getText());
-			    			label.setForeground(Color.CYAN);
+			    			label.setForeground(Color.BLACK);
 			    			panel.add(label);
 			    		}
 			    		

@@ -3,6 +3,7 @@ package twitterScraper;
 import java.util.List;
 
 import twitter4j.Query;
+import twitter4j.Query.ResultType;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -14,8 +15,10 @@ public class Scraper {
 	public List<Status> getTweet(String searchText) throws TwitterException {
 		Twitter twitter = TwitterFactory.getSingleton();
 	    Query query = new Query(searchText);
+	    ResultType resultt = new Query(searchText).RECENT;
 	    QueryResult results = twitter.search(query);
 	    int numResults = results.getCount();
+	    
 	    
 	    if(numResults==0) {
 	    	System.out.println("No such status");

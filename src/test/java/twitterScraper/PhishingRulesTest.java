@@ -26,6 +26,8 @@ public class PhishingRulesTest {
 		assertFalse(PhishingRules.checkForPhishing(text));
 		assertTrue(PhishingRules.checkForPhishing(bad));
 		assertTrue(PhishingRules.checkForPhishing("Click Me! https://hello.com"));
+		assertTrue(PhishingRules.checkForPhishing("BTC"));
+		assertTrue(PhishingRules.checkForPhishing("Bitcoin"));
 	}
 
 }

@@ -20,10 +20,10 @@ public class App {
 	private static Twitter twitter = TwitterFactory.getSingleton();
 	
     public static void main(String[] args) throws TwitterException, IOException {
-    	new GUI();
         AccessToken at = twitterLogin.createAccessToken(props.getString("Dtwitter4j.oauth.consumerKey"), props.getString("Dtwitter4j.oauth.consumerSecret"));
         ResponseList<Status> mentions = twitter.getMentionsTimeline();
         ResponseList<Status> homeTimeline = twitter.getHomeTimeline();
+        new GUI();
         
     }
 }
